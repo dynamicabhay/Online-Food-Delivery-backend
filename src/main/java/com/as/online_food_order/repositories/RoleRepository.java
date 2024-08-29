@@ -1,4 +1,4 @@
-package com.as.online_food_order.model.repositories;
+package com.as.online_food_order.repositories;
 
 import com.as.online_food_order.model.Role;
 import com.as.online_food_order.model.RoleEnum;

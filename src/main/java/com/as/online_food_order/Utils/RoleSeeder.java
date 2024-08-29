@@ -1,8 +1,8 @@
-package com.as.online_food_order.model.Utils;
+package com.as.online_food_order.Utils;
 
 import com.as.online_food_order.model.Role;
 import com.as.online_food_order.model.RoleEnum;
-import com.as.online_food_order.model.repositories.RoleRepository;
+import com.as.online_food_order.repositories.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
