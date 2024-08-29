@@ -8,6 +8,7 @@ import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedBy;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -19,6 +20,8 @@ public class Restaurant {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
    private Long id;
+
+    @OneToOne
    private User owner;
    private String name;
    private String description;
@@ -34,13 +37,13 @@ public class Restaurant {
    private String reviews;
 
    @OneToMany(mappedBy = "restaurant")
-   private List<Order> orders;
+   private List<Order> orders = new ArrayList<>();
 
    private int numRating;
 
    @ElementCollection
    @Column(name = "url")
-   private List<String> images;
+   private List<String> images = new ArrayList<>();
 
    @CreationTimestamp
    private Date registrationDate;
@@ -48,9 +51,17 @@ public class Restaurant {
    @ColumnDefault("true")
    private boolean open;
 
-   @ManyToMany(mappedBy = "restaurants")
-   private List<Food> foods;
+   @ManyToMany
+   @JoinTable(name = "restaurant_food",
+           joinColumns = @JoinColumn(name = "restaurant_id"),
+           inverseJoinColumns = @JoinColumn(name = "food_id")
+   )
+   private List<Food> foods = new ArrayList<>();
 
-   @ManyToMany(mappedBy = "restaurants")
-   private List<FoodCategory> foodCategories;
+   @ManyToMany
+   @JoinTable(name = "restaurant_foodCategory",
+           joinColumns = @JoinColumn(name = "restaurant_id"),
+           inverseJoinColumns = @JoinColumn(name = "foodCategory_id")
+   )
+   private List<FoodCategory> foodCategories = new ArrayList<>();
 }

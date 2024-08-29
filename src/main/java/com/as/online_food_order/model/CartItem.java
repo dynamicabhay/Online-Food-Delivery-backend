@@ -1,7 +1,6 @@
 package com.as.online_food_order.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,9 +11,13 @@ import lombok.NoArgsConstructor;
 @Entity
 public class CartItem {
 
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
   private Long  id;
   @ManyToOne
   private Cart  cart;
+
+  @ManyToOne
   private Food  food;
   private int  quantity;
   private Float  totalPrice;

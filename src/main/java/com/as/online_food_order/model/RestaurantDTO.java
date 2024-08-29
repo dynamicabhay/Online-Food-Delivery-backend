@@ -3,6 +3,7 @@ package com.as.online_food_order.model;
 import jakarta.persistence.Embeddable;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -13,5 +14,5 @@ public class RestaurantDTO {
     private String description;
     private String cuisineType;
 
-    private List<String> images;
+    private List<String> images = new ArrayList<>();
 }

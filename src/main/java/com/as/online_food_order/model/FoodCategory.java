@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -19,10 +20,6 @@ public class FoodCategory {
 
    private String  name;
 
-    @ManyToMany
-    @JoinTable(name = "restaurant_foodCategory",
-            joinColumns = @JoinColumn(name = "restaurant_id"),
-            inverseJoinColumns = @JoinColumn(name = "foodCategory_id")
-    )
-   private List<Restaurant> restaurants;
+    @ManyToMany(mappedBy = "foodCategories")
+   private List<Restaurant> restaurants = new ArrayList<>();
 }

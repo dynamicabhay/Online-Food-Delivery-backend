@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -23,14 +24,14 @@ public class User {
    @ManyToOne
    private Role role;
 
-   @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,orphanRemoval = true)
-   private Order orders;
+   @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL,orphanRemoval = true)
+   private List<Order> orders;
 
    @ElementCollection
-   private List<RestaurantDTO> favorites;
+   private List<RestaurantDTO> favorites = new ArrayList<>();
 
    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
-   private List<Address> addresses;
+   private List<Address> addresses = new ArrayList<>();
 
    @ColumnDefault("true")
    private boolean status;

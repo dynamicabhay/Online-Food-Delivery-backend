@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -23,8 +24,8 @@ public class IngredientCategory {
             joinColumns = @JoinColumn(name = "restaurant_id"),
             inverseJoinColumns = @JoinColumn(name = "ingredient_category_id")
     )
-    private List<Restaurant> restaurants;
+    private List<Restaurant> restaurants = new ArrayList<>();
 
     @OneToMany(mappedBy = "category",cascade = CascadeType.ALL,orphanRemoval = true)
-    private List<IngredientsItem> ingredients;
+    private List<IngredientsItem> ingredients = new ArrayList<>();
 }

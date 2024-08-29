@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+
+import java.util.ArrayList;
 import java.util.Date;
 
 import java.util.List;
@@ -27,22 +29,19 @@ public class Food {
     private FoodCategory foodCategory;
 
     @ElementCollection
-    private List<String> images;
+    private List<String> images = new ArrayList<>();
 
     private boolean available;
 
-    @ManyToMany
-    @JoinTable(name = "restaurant_food",
-            joinColumns = @JoinColumn(name = "restaurant_id"),
-            inverseJoinColumns = @JoinColumn(name = "food_id")
-    )
-    private List<Restaurant> restaurants;
+    @ManyToMany(mappedBy = "foods")
+    private List<Restaurant> restaurants = new ArrayList<>();
 
     private boolean isVegetarian;
+
     private boolean isSeasonal;
 
     @OneToMany
-    private List<IngredientsItem> ingredients;
+    private List<IngredientsItem> ingredients = new ArrayList<>();
 
     @CreationTimestamp
     private Date creationDate;
