@@ -34,7 +34,7 @@ public class RestaurantController {
     }
 
     @GetMapping
-    @PreAuthorize("hasAnyRole('ADMIN','RESTAURANT_OWNER')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<RestaurantReqResDTO>> getAllRestaurant(){
         return new ResponseEntity<>(restaurantService.getAllRestaurant(),HttpStatus.ACCEPTED);
     }
@@ -51,17 +51,20 @@ public class RestaurantController {
     }
 
     @GetMapping("/owner/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<UserDTO> findOwnerByRestaurantId(@PathVariable(name ="id") Long id) throws Exception{
 
       return new ResponseEntity<>(restaurantService.getOwnerByRestaurantId(id),HttpStatus.ACCEPTED);
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN','RESTAURANT_OWNER')")
     public ResponseEntity<String> deleteRestaurantById(@PathVariable(name = "id") Long id) throws Exception{
         return new ResponseEntity<>(restaurantService.deleteRestaurantById(id),HttpStatus.ACCEPTED);
     }
 
     @GetMapping("/toggle/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN','RESTAURANT_OWNER')")
     public ResponseEntity<RestaurantReqResDTO> toggleRestaurantState(@PathVariable Long id) throws Exception{
         return new ResponseEntity<>(restaurantService.toggleRestaurantState(id),HttpStatus.CREATED);
     }
