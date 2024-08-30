@@ -1,6 +1,7 @@
 package com.as.online_food_order.Config;
 
 import com.as.online_food_order.repositories.UserRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -43,5 +44,10 @@ public class AppConfig {
         authProvider.setPasswordEncoder(passwordEncoder());
 
         return authProvider;
+    }
+
+    @Bean
+    ModelMapper getMapper(){
+        return new ModelMapper();
     }
 }

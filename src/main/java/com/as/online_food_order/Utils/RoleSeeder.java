@@ -5,6 +5,7 @@ import com.as.online_food_order.model.RoleEnum;
 import com.as.online_food_order.repositories.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
@@ -13,6 +14,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @Component
+@Order(1)
 public class RoleSeeder implements CommandLineRunner {
     @Autowired
     RoleRepository roleRepo;

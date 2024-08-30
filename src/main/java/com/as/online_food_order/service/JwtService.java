@@ -1,4 +1,4 @@
-package com.as.online_food_order;
+package com.as.online_food_order.service;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

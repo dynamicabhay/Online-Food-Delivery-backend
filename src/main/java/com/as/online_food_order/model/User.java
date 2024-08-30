@@ -2,11 +2,13 @@ package com.as.online_food_order.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
@@ -17,6 +19,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Builder
 public class User implements UserDetails {
 
     @Id
@@ -29,7 +32,7 @@ public class User implements UserDetails {
    private Role role;
 
    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL,orphanRemoval = true)
-   private List<Order> orders;
+   private List<Order> orders = new ArrayList<>();
 
    @ElementCollection
    private List<RestaurantDTO> favorites = new ArrayList<>();
@@ -42,7 +45,7 @@ public class User implements UserDetails {
 
    @Override
    public Collection<? extends GrantedAuthority> getAuthorities() {
-      return List.of();
+      return List.of(new SimpleGrantedAuthority("ROLE_" + this.getRole().getName().name()));
    }
 
    @Override

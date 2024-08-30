@@ -23,7 +23,7 @@ public class Role {
     private String description;
 
     @Enumerated(EnumType.STRING)
-    private RoleEnum name;
+    private RoleEnum name = RoleEnum.USER;
 
     @CreationTimestamp
     @Column(updatable = false, name = "created_at")
