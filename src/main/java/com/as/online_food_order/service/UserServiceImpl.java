@@ -25,4 +25,10 @@ public class UserServiceImpl implements UserService{
         UserDTO res = mapper.map(user,UserDTO.class);
         return res;
     }
+
+    @Override
+    public User getUserFromJwt(String token) {
+        String userEmail = jwtService.extractUsername(token.substring(7));
+        return userRepository.findByEmail(userEmail).orElseThrow();
+    }
 }
